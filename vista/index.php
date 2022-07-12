@@ -22,6 +22,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <link rel="stylesheet" href="../plantilla/plugins/fontawesome-free/css/all.min.css">
   <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
   <!-- Theme style -->
+  <link rel="stylesheet" type="text/css" href="../resources/DataTables/datatables.min.css"/>
+  <link rel="stylesheet" type="text/css" href="../resources/select2.min.css"/>
   <link rel="stylesheet" href="../plantilla/dist/css/adminlte.min.css">
   <link rel="stylesheet" href="../resources/styles.css">
   <link rel="icon" href="../resources/test.png">
@@ -136,7 +138,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <?php if($_SESSION['S_NROL']=="1"){?>
             <li class="nav-header">Administración</li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="#" class="nav-link" onclick="cargar_contenido('contenido_principal','usuario/listar_usuario.php')">
               <i class="nav-icon fas fa-users"></i>
               <p>
                 Gestion de Usuarios
@@ -178,6 +180,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <!-- Bootstrap 4 -->
 <script src="../plantilla/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->
+<script type="text/javascript" src="../resources/DataTables/datatables.min.js"></script>
+<script type="text/javascript" src="../resources/select2.min.js"></script>
 <script src="../plantilla/dist/js/adminlte.min.js"></script>
 <script src="../js/cerrar_sesion.js?rev=<?php echo time(); ?>"></script>
 <script src="../resources/sweetalert.js"></script>
