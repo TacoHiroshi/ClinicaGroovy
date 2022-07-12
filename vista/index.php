@@ -118,7 +118,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <?php if($_SESSION['S_NROL']=="1"||$_SESSION['S_NROL']=="2"){?>
           <li class="nav-header">Consultas</li>
           <li class="nav-item">
-            <a href="#" class="nav-link ">
+            <a href="#" class="nav-link "onclick="cargar_contenido('contenido_principal','examenes/ex_hemograma_completo.php')">
               <i class="nav-icon fas fa-search-plus"></i>
               <p>
                 Consultar Registros

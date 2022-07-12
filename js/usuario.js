@@ -152,7 +152,7 @@ $('#tabla_usuario').on('click','.editar',function(){
     document.getElementById('txt_usuario_edit').value=data["usu_nombre"];
     document.getElementById('txt_email_edit').value=data["usu_email"];
 
-    $("#select_rol_edit").select2().val(data["rol_nombre"]).trigger('change.select2');
+    $("#select_rol_edit").val(data["rol_nombre"]).trigger("change"); 
 })
 
 function AbrirModalRegistroUsuario(){
@@ -277,8 +277,8 @@ function modificar_usuario(){
         }
     }).done(function(resp){
         if(resp>0){
-                Swal.fire("Mensaje de Confirmacion","Datos Actualizados correctamente","success").
-                then((value)=>{
+                Swal.fire("Mensaje de Confirmacion","Datos Actualizados correctamente","success").then((value)=>{
+                   $("#modal_editar_usuario").modal('hide');
                     tbl_listar_usuario.ajax.reload();
                 });
 
