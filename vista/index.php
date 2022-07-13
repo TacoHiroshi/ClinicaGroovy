@@ -190,6 +190,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
     $("#"+id).load(vista);
   }
   
+  $(function(){
+      var menues = $(".nav-link");
+      menues.click(function(){
+      menues.removeClass("active");
+      $(this).addClass("active");
+      });
+  });
 </script>
 <!-- ./Registro Storage -->
 </body>

@@ -102,30 +102,38 @@ function rememberMe(){
         localStorage.checkbox = "";
     }
 }
+
 var tbl_listar_usuario;
-function listar_usuario(){
+function listar_usuario_serverside(){
     tbl_listar_usuario = $("#tabla_usuario").DataTable({
-        "ordering":false,
-        "bLengthChange":true,
-        "searching": {"regex": false},
-        "lengthMenu": [[10, 25, 50, 100, -1],[10, 25, 50, 100, "All"]],
         "pageLength": 10,
         "destroy": true,
-        "async": false,
-        "processing": true,
-        "ajax":{
-            "url":"../control/user/control_listar_usuario.php",
-            type:'POST'
-            
-        },
+        "bProcessing": true,
+        "bDeferRender": true,
+        "bServerSide": true,
+        "sAjaxSource": "../control/user/serverside/serversideUsuario.php",
         "columns":[
-            {"defaultContent":"usu_id"},
-            {"data":"usu_nombre"},
-            {"data":"usu_email"},
-            {"data":"rol_nombre"},
-            {"data":"editar",
+            {"defaultContent":""},
+            {"data":1},
+            {"data":6},
+            {"data":4},
+            {"data":5,
+            render: function(data,type,row){
+                if(data=='ACTIVO'){
+                    return '<span class="badge bg-success">ACTIVO</span>';
+                }else{
+                    return '<span class="badge bg-danger">INACTIVO</span>';
+                }
+            }
+        },
+            {"data":5,
                 render: function(data,type,row){
-                    return "<button class='editar btn btn-primary'><i class='fa fa-edit'></i></button>"; }
+                    if (data=='ACTIVO'){
+                        return "<button class='editar btn btn-sm btn-primary'><i class='fa fa-edit'></i></button>&nbsp<button class='contra btn btn-sm btn-orange'><i class='fa fa-key'></i></button>&nbsp<button class='btn btn-sm btn-success' disabled><i class='fa fa-check-circle'></i></button>&nbsp<button class='desactivar btn btn-sm btn-danger'><i class='fa fa-trash'></i></button>";
+                    }else{
+                        return "<button class='editar btn btn-sm btn-primary'><i class='fa fa-edit'></i></button>&nbsp<button class='contra btn btn-sm btn-orange'><i class='fa fa-key'></i></button>&nbsp<button class='activar btn btn-sm btn-success'><i class='fa fa-check-circle'></i></button>&nbsp<button class='btn btn-sm btn-danger' disabled><i class='fa fa-trash'></i></button>";
+                    }
+                }
                 }
            
            
@@ -140,6 +148,7 @@ function listar_usuario(){
 
 
 }
+
 $('#tabla_usuario').on('click','.editar',function(){
     var data = tbl_listar_usuario.row($(this).parents('tr')).data();
 
@@ -148,11 +157,66 @@ $('#tabla_usuario').on('click','.editar',function(){
     }
     $('.form-control').removeClass("is-invalid").removeClass("is-valid");
     $("#modal_editar_usuario").modal('show');
-    document.getElementById('txt_idusuario_edit').value=data["usu_id"];
-    document.getElementById('txt_usuario_edit').value=data["usu_nombre"];
-    document.getElementById('txt_email_edit').value=data["usu_email"];
+    document.getElementById('txt_usuario_edit').value=data[1];
+    document.getElementById('txt_email_edit').value=data[6];
 
-    $("#select_rol_edit").val(data["rol_nombre"]).trigger("change"); 
+    $("#select_rol_edit").val(data[3]).trigger("change"); 
+})
+
+$('#tabla_usuario').on('click','.activar',function(){
+    var data = tbl_listar_usuario.row($(this).parents('tr')).data();
+
+    if(tbl_listar_usuario.row(this).child.isShown()){
+        var data = tbl_listar_usuario.row(this).data();
+    }
+    Swal.fire({
+        title: 'Estas seguro de Activar al Usuario '+data[1] +'?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si, confirmar!'
+      }).then((result) => {
+        if (result.isConfirmed) {
+            Modificar_Estatus(data[0],"ACTIVO");
+        }
+      })
+
+})
+
+$('#tabla_usuario').on('click','.desactivar',function(){
+    var data = tbl_listar_usuario.row($(this).parents('tr')).data();
+
+    if(tbl_listar_usuario.row(this).child.isShown()){
+        var data = tbl_listar_usuario.row(this).data();
+    }
+    Swal.fire({
+        title: 'Estas seguro de Desactivar al Usuario '+data[1] +'?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si, confirmar!'
+      }).then((result) => {
+        if (result.isConfirmed) {
+            Modificar_Estatus(data[0],"INACTIVO");
+        }
+      })
+
+})
+
+
+$('#tabla_usuario').on('click','.contra',function(){
+    var data = tbl_listar_usuario.row($(this).parents('tr')).data();
+
+    if(tbl_listar_usuario.row(this).child.isShown()){
+        var data = tbl_listar_usuario.row(this).data();
+    }
+    $("#modal_cambiar_contrasena").modal('show');
+    
+    document.getElementById('text_usuariocontra').value=data[1];
+    document.getElementById('text_idusuariocontra').innerHTML=data[0];
+
 })
 
 function AbrirModalRegistroUsuario(){
@@ -216,6 +280,7 @@ function registrarusuario(){
                     limpiarmodalusu();
                     Swal.fire("Mensaje de Confirmacion","Nuevo usuario registrado","success").
                     then((value)=>{
+                        $("#Modal_registro_usuario").modal('hide');
                         tbl_listar_usuario.ajax.reload();
                     });
 
@@ -284,6 +349,60 @@ function modificar_usuario(){
 
         }else{
             Swal.fire("Mensaje de Error", "No se pudo actualizar los datos","error")
+        }
+    })
+}
+
+function Modificar_Estatus(id,estatus){
+    $.ajax({
+        url:'../control/user/control_mod_usuario_estatus.php',
+        type:'POST',
+        data:{
+            id:id,
+            estatus:estatus,
+        }
+    }).done(function(resp){
+        if(resp>0){
+                Swal.fire("Mensaje de Confirmacion","Estado Actualizado correctamente","success").then((value)=>{
+                    tbl_listar_usuario.ajax.reload();
+                });
+
+        }else{
+            Swal.fire("Mensaje de Error", "No se pudo actualizar los estado","error")
+        }
+    })
+}
+
+function modificar_contra(){
+    let id = document.getElementById('idusuariocontra').value;
+    let contranueva = document.getElementById('txt_contra_nueva').value;
+    let contrarepe = document.getElementById('txt_contra_nueva_re').value;
+    if(id.length==0 ||contranueva.length==0||contrarepe.length==0){
+        return Swal.fire("Mensaje de Advertencia","Tiene algunos campos vacios.","warning");
+    }
+    if(contranueva!=contrarepe){
+        return Swal.fire("Mensaje de Advertencia","Las contraseñas ingresadas no coninciden","warning");
+    }
+    $.ajax({
+        url:'../control/user/control_mod_usuario_contra.php',
+        type:'POST',
+        data:{
+            id:id,
+            contranueva:contranueva,
+        }
+    }).done(function(resp){
+        if(resp>0){
+                Swal.fire("Mensaje de Confirmacion","Contraseña Actualizado correctamente","success").then((value)=>{
+                    
+                    document.getElementById('idusuariocontra').value="";
+                    document.getElementById('txt_contra_nueva').value="";
+                    document.getElementById('txt_contra_nueva_re').value="";
+                    $("#modal_cambiar_contrasena").modal('hide');
+                    tbl_listar_usuario.ajax.reload();
+                });
+
+        }else{
+            Swal.fire("Mensaje de Error", "No se pudo actualizar la Contraseña","error")
         }
     })
 }

@@ -101,5 +101,45 @@
 
             conexionBD::cerrar_conexion();
         }
+
+        public function modificar_usuario_estatus($id,$estatus){
+            $c = conexionBD::conexionPDO();
+
+            $sql ="CALL SP_MODIFICAR_USUARIO_ESTATUS(?,?)";
+            $arreglo = array();
+            $query = $c->prepare($sql);
+            $query->bindParam(1,$id);
+            $query->bindParam(2,$estatus);
+            $resultado = $query->execute();
+                     
+            if($resultado){
+                return 1;
+            }else{
+                return 0;
+            }
+            
+
+            conexionBD::cerrar_conexion();
+        }
+        
+        public function modificar_usuario_contra($id,$contra){
+            $c = conexionBD::conexionPDO();
+
+            $sql ="CALL SP_MODIFICAR_USUARIO_CONTRA(?,?)";
+            $arreglo = array();
+            $query = $c->prepare($sql);
+            $query->bindParam(1,$id);
+            $query->bindParam(2,$contra);
+            $resultado = $query->execute();
+                     
+            if($resultado){
+                return 1;
+            }else{
+                return 0;
+            }
+            
+
+            conexionBD::cerrar_conexion();
+        }
     }
 ?>

@@ -1,5 +1,4 @@
 function destruir_sesion(){
-    console.log("Hola")
     Swal.fire({
         title: 'Esta Seguro de Salir?',
         icon: 'warning',

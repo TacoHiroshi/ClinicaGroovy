@@ -31,6 +31,7 @@
                                 <th>Nombres</th>
                                 <th>Email</th>
                                 <th>Rol</th>
+                                <th>Estado</th>
                                 <th>Acción</th>
                             </tr>
                         </thead>
@@ -108,7 +109,7 @@
                 <label for="">Rol</label>
                 <select class="js-example-basic-single" id="select_rol_edit" style="width:100%"></select>
             </div>
-
+            
         </div>
       </div>
       <div class="modal-footer">
@@ -119,11 +120,46 @@
   </div>
 </div>
 <!--fin modal-->
+<!--Ini modal editar-->
+<div class="modal fade" id="modal_cambiar_contrasena" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Editar Contraseña de Usuario</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+            <div class="col-12">
+                <label for="">Usuario</label>
+                <input type="text" id="text_idusuariocontra" hidden>
+                <input type="text" id="text_usuariocontra" class="form-control" disabled>
+            </div>
+            <div class="col-12">
+                <label for="">Contraseña Nueva</label>
+                <input type="text" id="txt_contra_nueva" class="form-control" >  
+            </div>
+            <div class="col-12">
+                <label for="">Repetir Contraseña </label>
+                <input type="text" id="txt_contra_nueva_re" class="form-control">  
+            </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary" onclick="modificar_contra()">Actualizar</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--fin modal-->
 <script>
     $(document).ready(function() {
     $('.js-example-basic-single').select2();
 });
-listar_usuario();
+listar_usuario_serverside();
 Cargar_rol();
 
 </script>
