@@ -215,7 +215,7 @@ $('#tabla_usuario').on('click','.contra',function(){
     $("#modal_cambiar_contrasena").modal('show');
     
     document.getElementById('text_usuariocontra').value=data[1];
-    document.getElementById('text_idusuariocontra').innerHTML=data[0];
+    document.getElementById('text_idusuariocontra').value=data[0];
 
 })
 
@@ -374,7 +374,7 @@ function Modificar_Estatus(id,estatus){
 }
 
 function modificar_contra(){
-    let id = document.getElementById('idusuariocontra').value;
+    let id = document.getElementById('text_idusuariocontra').value;
     let contranueva = document.getElementById('txt_contra_nueva').value;
     let contrarepe = document.getElementById('txt_contra_nueva_re').value;
     if(id.length==0 ||contranueva.length==0||contrarepe.length==0){
@@ -393,8 +393,8 @@ function modificar_contra(){
     }).done(function(resp){
         if(resp>0){
                 Swal.fire("Mensaje de Confirmacion","Contraseña Actualizado correctamente","success").then((value)=>{
-                    
-                    document.getElementById('idusuariocontra').value="";
+                    document.getElementById('text_idusuariocontra').value="";
+                    document.getElementById('text_usuariocontra').value="";
                     document.getElementById('txt_contra_nueva').value="";
                     document.getElementById('txt_contra_nueva_re').value="";
                     $("#modal_cambiar_contrasena").modal('hide');

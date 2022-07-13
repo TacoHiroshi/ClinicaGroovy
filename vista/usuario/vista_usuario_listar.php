@@ -198,11 +198,4 @@
     var id_provincia = $("#f_provincia").val();
     listar_distrito(id_provincia,"vacio");
   })
-  $(function(){
-      var menues = $(".nav-link");
-      menues.click(function(){
-      menues.removeClass("active");
-      $(this).addClass("active");
-      });
-  });
 </script>
