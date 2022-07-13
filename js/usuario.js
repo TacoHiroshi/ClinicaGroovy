@@ -159,6 +159,8 @@ $('#tabla_usuario').on('click','.editar',function(){
     $("#modal_editar_usuario").modal('show');
     document.getElementById('txt_usuario_edit').value=data[1];
     document.getElementById('txt_email_edit').value=data[6];
+    
+    document.getElementById('txt_idusuario_edit').value=data[0];
 
     $("#select_rol_edit").val(data[3]).trigger("change"); 
 })
@@ -325,7 +327,7 @@ function modificar_usuario(){
     let email   = document.getElementById('txt_email_edit').value;
     if(rol.length==0 || email.length==0 || id.length==0){
         validar_registro("txt_usuario_edit", "","txt_email_edit");
-        return Swal.fire("Mensaje de Advertencia","Tiene algunos campos vacios","warning");
+        return Swal.fire("Mensaje de Advertencia","Tiene algunos campos vacios"+'aqui'+id+'email',"warning");
     }
     if(validar_emailR(email)){
 
