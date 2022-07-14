@@ -174,6 +174,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 <!-- jQuery -->
 <script src="../plantilla/plugins/jquery/jquery.min.js"></script>
+
   
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
@@ -185,6 +186,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <script src="../plantilla/dist/js/adminlte.min.js"></script>
 <script src="../js/cerrar_sesion.js?rev=<?php echo time(); ?>"></script>
 <script src="../resources/sweetalert.js"></script>
+
 <script>
   function cargar_contenido(id, vista){
     $("#"+id).load(vista);

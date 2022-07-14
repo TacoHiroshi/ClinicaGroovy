@@ -46,7 +46,7 @@
                       <div class="form-group">
                         <label for="exampleInputFile">Apellido paterno: </label>
                         <div class="input-group mb-3">
-                          <input type="text" class="form-control" id="paciente_apepaterno">
+                          <input type="text" class="form-control" id="paciente_apepaterno" onkeypress="return soloLetras(event)" onpaste="return false">
                         </div>
                       </div>
                   </div>
@@ -54,7 +54,7 @@
                       <div class="form-group">
                         <label for="exampleInputFile">Apellido materno: </label>
                         <div class="input-group mb-3">
-                          <input type="text" class="form-control" id="paciente_apematerno">
+                          <input type="text" class="form-control" id="paciente_apematerno" onkeypress="return soloLetras(event)" onpaste="return false">
                         </div>
                       </div>
                   </div>
@@ -62,11 +62,13 @@
                       <div class="form-group">
                         <label for="exampleInputFile">Nombres: </label>
                         <div class="input-group mb-3">
-                          <input type="text" class="form-control" id="paciente_nombres">
+                          <input type="text" class="form-control" id="paciente_nombres" onkeypress="return soloLetras(event)" onpaste="return false">
                         </div>
                       </div>
                   </div>
                 </div>
+                
+                <div id="liveAlertPlaceholder"></div>
                 <div class="row">
                   <div class="col-lg-2 col-md-3 col-sm-4">
                     <div class="form-group">
@@ -81,11 +83,12 @@
                     <div class="form-group">
                       <label>Edad: </label>
                       <div class="input-group mb-3">
-                          <input type="number" class="form-control" id="paciente_edad">
-                        </div>
+                        <input type="number" min="1" max="99" class="form-control" id="paciente_edad" >
+                      </div>
                     </div>
                   </div>
                   <div class="col-lg-2 col-md-2 col-sm-2">
+                    <div id="menor_e" class="tooltip tooltip-main bs-tooltip-top" role="presentation" style="margin-left: -90px; margin-top: -20px "><div class="arrow"></div><div class="tooltip-inner">Menor de edad</div></div>
                     <div class="form-group">
                       <label>Tipo de Edad: </label>
                       <div class="input-group mb-3">
@@ -97,7 +100,16 @@
                       </div>
                     </div>
                   </div>
+                  <div class="col-lg-2 col-md-2 col-sm-2">
+                    <div class="form-group">
+                      <label>Apoderado</label>
+                      <div><button id="agregar-apo" class="btn btn-primary"><i class="fa fa-plus-circle mr-1"></i>Asignar apoderado</button></div>
+                    </div>
+                  </div>
                 </div>
+                <!-- para agregar a los padres -->
+                <div class="row-parents"></div>
+                <!-- para agregar a los padres -->
                 <div class="row">
                   <div class="col-lg-2 col-md-3 col-sm-4">
                     <div class="form-group">
@@ -152,7 +164,7 @@
                     <div class="form-group">
                       <label for="exampleInputFile">Nro de Telefono: </label>
                       <div class="input-group mb-3">
-                        <input type="number" class="form-control"id="f_numero"disabled="disabled">
+                        <input type="number" class="form-control" id="f_numero" disabled="disabled" maxlength="9" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
                       </div>
                     </div>
                   </div>
@@ -162,7 +174,7 @@
                     <button type="button" class="btn btn-danger" id="cancelar" onclick="c_cancelar()">Cancelar</button>
                   </div>
                   <div class="col-md-6 col-sm-3">
-                    <button type="submit" class="btn btn-primary text-white text-bold" onclick="revisa()">Continuar <i class="fas fa-arrow-right"></i></button>
+                    <button id="liveAlertBtn" type="submit" class="btn btn-primary text-white text-bold" onclick="revisa()">Continuar <i class="fas fa-arrow-right"></i></button>
                   </div>
                 </div>
               </div>
@@ -198,4 +210,106 @@
     var id_provincia = $("#f_provincia").val();
     listar_distrito(id_provincia,"vacio");
   })
+<<<<<<< Updated upstream
+=======
+  $(function(){
+      var menues = $(".nav-link");
+      menues.click(function(){
+      menues.removeClass("active");
+      $(this).addClass("active");
+      });
+  });
+</script>
+
+<script>
+  var input=  document.getElementById('paciente_edad');
+  input.addEventListener('input',function(){
+  if (this.value.length > 2) 
+     this.value = this.value.slice(0,2); 
+  })
+</script>
+
+<script>
+  let texto_edad = document.getElementById('f_tipoedad');
+  let texto_edad_inpu = texto_edad.options[texto_edad.selectedIndex].text;
+
+  if(texto_edad_inpu === "Meses"){
+    alert("gaaaaaaaaaaaaaaaaaaaaaa meses")
+  }
+
+  $("#paciente_edad").change(function(){
+    var paciente_edad = $("#paciente_edad").val();
+    if(paciente_edad < 18 || texto_edad_inpu == "Meses" || texto_edad_inpu == "Dias"){
+      var show = $("#menor_e");
+      show.addClass(" show");
+    }
+    if(paciente_edad >= 18){
+      var show = $("#menor_e");
+      show.removeClass(" show");
+    }
+  })
+</script>
+
+<script type="text/javascript">
+  $(function() {
+    var i = 0;
+    $('#agregar-apo').click(function (e) {
+      e.preventDefault();
+        i++;
+
+      if(i<=1){
+        $('.row-parents').append(
+        '<div class="row" id="row-parents-label'+i+'">'
+          +'<div class="col-lg-2 col-md-3 col-sm-4">'
+            +'<b>Datos del Apoderado:</b>'
+          +'</div>'
+        +'</div>'
+        // formulario
+        +'<div class="form-row" id="row-parents'+i+'">'
+          +'<div class="col-lg-4 col-md-4 col-sm-4">'
+            +'<div id="apoderado" class="form-group">'
+              +'<label for="exampleInputFile">Apellido y Nombres del Apoderado: </label>'
+              +'<div class="input-group mb-3">'
+                +'<input type="text" class="form-control" id="apoderado_datos" onkeypress="return soloLetras(event)" onpaste="return false">'
+              +'</div>'
+            +'</div>'
+          +'</div>'
+
+          +'<div class="col-lg-2 col-md-2 col-sm-2">'
+            +'<div id="apoderado" class="form-group">'
+              +'<label for="exampleInputFile">Número de Celular </label>'
+              +'<div class="input-group mb-3">'
+                +'<input type="number" class="form-control" id="apoderado_num" maxlength="9" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">'
+              +'</div>'
+            +'</div>'
+          +'</div>'
+          // boton para borrar
+          +'<div class="col-lg-2 col-md-3 col-sm-4">'
+            +'<div class="form-group">'
+              +'<label>Borrar</label>'
+              +'<div id="apoderado" class="form-group">'
+                +'<button id="'+i+'" class="btn borrar-apo btn-danger"><i class="fa fa-minus-circle"></i></button>'
+              +'</div>'
+            +'</div>'
+          +'</div>'
+
+        +'</div>'
+
+        );
+      }else{ return;}
+      
+
+      $(document).on('click','.borrar-apo', function(e){
+        e.preventDefault();
+
+        let id = $(this).attr("id");
+        $('#row-parents'+id+'').remove();
+        $('#row-parents-label'+id+'').remove();
+        i=0;
+      });
+
+    });
+});
+
+>>>>>>> Stashed changes
 </script>

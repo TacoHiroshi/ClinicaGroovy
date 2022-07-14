@@ -33,18 +33,197 @@ $("#f_tipoedad").val("1").trigger("change");
 // pr_input.value = localStorage.provincia;
 // di_input.value = localStorage.distrito;
 }
+
 function revisa(){
     if (dni_input.value.length!=8){
         return Swal.fire({
             icon: 'warning',
             title: 'Mensaje de Advertencia',
-            text: 'Debe ingresar los campos requeridos',
+            text: 'Debe ingresar los campos requeridos DNI',
             heightAuto: false
           });
     }
+
+    if ( /\d/.test($("#paciente_apepaterno").val().trim()) ) {
+        return Swal.fire({
+            icon: 'warning',
+            title: 'Mensaje de Advertencia',
+            text: 'No se permiten números en el campo Apellido paterno',
+            heightAuto: false
+          });
+    }
+
+    if ( /\d/.test($("#paciente_apematerno").val().trim()) ) {
+        return Swal.fire({
+            icon: 'warning',
+            title: 'Mensaje de Advertencia',
+            text: 'No se permiten números en el campo Apellido materno',
+            heightAuto: false
+          });
+    }
+
+    if ( /\d/.test($("#paciente_nombres").val().trim()) ) {
+        return Swal.fire({
+            icon: 'warning',
+            title: 'Mensaje de Advertencia',
+            text: 'No se permiten números en el campo Nombres',
+            heightAuto: false
+          });
+    }
+
+    if (s_input.value.length==0){
+        return Swal.fire({
+            icon: 'warning',
+            title: 'Mensaje de Advertencia',
+            text: 'Debe ingresar el sexo del paciente',
+            heightAuto: false
+          });
+    }
+
+    if (e_input.value.length==0){
+        return Swal.fire({
+            icon: 'warning',
+            title: 'Mensaje de Advertencia',
+            text: 'Debe ingresar la edad del paciente',
+            heightAuto: false
+          });
+    }
+    // para obtener el valor del Tipo de Edad
+    let texto_edad = document.getElementById('f_tipoedad')
+    texto_edad = texto_edad.options[texto_edad.selectedIndex].text;
+
+    if(texto_edad == "Años"){
+      if(e_input.value < 18){
+        let apoda_input = document.getElementById('apoderado_datos').value;
+        let aponu_input = document.getElementById('apoderado_num').value;
+
+        if(apoda_input.length == 0 || aponu_input.length == 0){
+          return Swal.fire({
+            icon: 'warning',
+            title: 'Mensaje de Advertencia',
+            text: 'Debe ingresar los campos requeridos del apoderado',
+            heightAuto: false
+          });
+        }
+      }
+
+      if(e_input.value >= 18){
+        let apoda_input = document.getElementById('apoderado_datos').value;
+        let aponu_input = document.getElementById('apoderado_num').value;
+        if(apoda_input.length == 0 || aponu_input.length == 0){
+          return Swal.fire({
+            icon: 'warning',
+            title: 'Mensaje de Advertencia',
+            text: 'Debe ingresar los campos requeridos del apoderado',
+            heightAuto: false
+          });
+        }
+        r_datos();
+      }
+      
+    }
+
+    if(texto_edad == "Meses"){
+      let apoda_input = document.getElementById('apoderado_datos').value;
+      let aponu_input = document.getElementById('apoderado_num').value;
+      if(e_input.value > 12){
+        return Swal.fire({
+          icon: 'warning',
+          title: 'Meses ingresados incorrecto',
+          text: 'Valor de meses ingresados no válido',
+          heightAuto: false
+        });
+      }
+      if(apoda_input.length == 0 || aponu_input.length == 0){
+          return Swal.fire({
+            icon: 'warning',
+            title: 'Mensaje de Advertencia',
+            text: 'Debe ingresar los campos requeridos del apoderado',
+            heightAuto: false
+          });
+        }
+    }
+
+    if(texto_edad == "Dias"){
+      let apoda_input = document.getElementById('apoderado_datos').value;
+      let aponu_input = document.getElementById('apoderado_num').value;
+      if(e_input.value > 31){
+        return Swal.fire({
+          icon: 'warning',
+          title: 'Días ingresados incorrecto',
+          text: 'Valor de días ingresados no válidos',
+          heightAuto: false
+        });
+      }
+      if(apoda_input.length == 0 || aponu_input.length == 0){
+          return Swal.fire({
+            icon: 'warning',
+            title: 'Mensaje de Advertencia',
+            text: 'Debe ingresar los campos requeridos del apoderado',
+            heightAuto: false
+          });
+        }
+    }
     
-    r_datos();
+    
+    mail_ve=/^([\da-z_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/;
+    if (document.getElementById('f_requierecontacto').checked) {
+      if (em_input.value.length > 1 || c_input.value.length > 1) {
+        if(em_input.value.length >= 1){
+          if(!mail_ve.exec(document.getElementById('f_correo').value)){
+            return Swal.fire({
+              icon: 'warning',
+              title: 'Error',
+              text: 'Datos de contacto Incorrectos: Correo',
+              heightAuto: false
+            });
+          }
+          r_datos();
+        }
+        
+        if(c_input.value.length >= 1){
+          if(c_input.value.length != 9){
+            return Swal.fire({
+              icon: 'warning',
+              title: 'Error',
+              text: 'Datos de contacto Incorrectos: Teléfono',
+              heightAuto: false
+            });
+          }
+          r_datos();
+        }
+        
+        } else {
+          return Swal.fire({
+            icon: "warning",
+            title: "Mensaje de Advertencia",
+            text: "Debe ingresar el correo o número del paciente",
+            heightAuto: false,
+          });
+        }
+    }
+  r_datos();
 }
+
+function soloLetras(e) {
+    var key = e.keyCode || e.which,
+      tecla = String.fromCharCode(key).toLowerCase(),
+      letras = " áéíóúabcdefghijklmnñopqrstuvwxyz",
+      especiales = [8, 37, 39, 46],
+      tecla_especial = false;
+
+    for (var i in especiales) {
+      if (key == especiales[i]) {
+        tecla_especial = true;
+        break;
+      }
+    }
+
+    if (letras.indexOf(tecla) == -1 && !tecla_especial) {
+      return false;
+    }
+  }
+
 function r_datos(){ 
     localStorage.setItem('dni', dni_input.value);
     localStorage.setItem('nombre', n_input.value);
