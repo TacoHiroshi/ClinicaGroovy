@@ -33,7 +33,7 @@
                       <div class="form-group">
                         <label for="exampleInputFile">Nro. de DNI</label>
                         <div class="input-group mb-3">
-                          <input type="number" class="form-control" id="paciente_dni">
+                          <input type="number" class="form-control" id="paciente_dni" maxlength="8" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
                           <span class="input-group-append">
                           <button onclick="buscar_paciente()" type="button" class="btn btn-success ml-3"><i class="nav-icon fas fa-search"></i> Buscar</button>
                           </span>
@@ -210,8 +210,6 @@
     var id_provincia = $("#f_provincia").val();
     listar_distrito(id_provincia,"vacio");
   })
-<<<<<<< Updated upstream
-=======
   $(function(){
       var menues = $(".nav-link");
       menues.click(function(){
@@ -277,9 +275,9 @@
 
           +'<div class="col-lg-2 col-md-2 col-sm-2">'
             +'<div id="apoderado" class="form-group">'
-              +'<label for="exampleInputFile">Número de Celular </label>'
+              +'<label for="exampleInputFile">DNI del Apoderado: </label>'
               +'<div class="input-group mb-3">'
-                +'<input type="number" class="form-control" id="apoderado_num" maxlength="9" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">'
+                +'<input type="number" class="form-control" id="apoderado_num" maxlength="8" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">'
               +'</div>'
             +'</div>'
           +'</div>'
@@ -311,5 +309,4 @@
     });
 });
 
->>>>>>> Stashed changes
 </script>

@@ -106,20 +106,8 @@ function revisa(){
           });
         }
       }
-
-      if(e_input.value >= 18){
-        let apoda_input = document.getElementById('apoderado_datos').value;
-        let aponu_input = document.getElementById('apoderado_num').value;
-        if(apoda_input.length == 0 || aponu_input.length == 0){
-          return Swal.fire({
-            icon: 'warning',
-            title: 'Mensaje de Advertencia',
-            text: 'Debe ingresar los campos requeridos del apoderado',
-            heightAuto: false
-          });
-        }
-        r_datos();
-      }
+      // AGREGAR VARIABLE AL "AGREGAR APODERADO PARA EL >= 18 XDDDD TYPU PUTO"
+      
       
     }
 
