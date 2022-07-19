@@ -1,5 +1,5 @@
 $(function () {
-    $("#f_requierecontacto").click(function () {
+    $("#f_requierecontacto").change(function () {
         if ($(this).is(":checked")) {
             $("#f_numero").removeAttr("disabled");
             $("#f_correo").removeAttr("disabled");
@@ -136,10 +136,15 @@ function buscar_paciente(){
             document.getElementById("paciente_apepaterno").value = data[0][2];
             document.getElementById("paciente_apematerno").value = data[0][3];
             document.getElementById("paciente_nombres").value = data[0][1];
-            document.getElementById("paciente_sexo").value = data[0][7];
-            document.getElementById("paciente_edad").value = data[0][6];
-            ubigeo=data[0][10];
+            document.getElementById("paciente_sexo").value = data[0][6];
+            document.getElementById("paciente_edad").value = data[0][5];
+            ubigeo=data[0][8];
+            $("#f_tipoedad").val(data[0][11]).trigger("change");
+            $("#f_requierecontacto").prop("checked", data[0][7]);
+            document.getElementById("f_correo").value = data[0][9];
+            document.getElementById("f_numero").value = data[0][10];
             rellenar_ubigeo(ubigeo);
+
         }else{
             Swal.fire({
                 icon: 'error',
