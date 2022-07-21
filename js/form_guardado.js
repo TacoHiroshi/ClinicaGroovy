@@ -89,15 +89,14 @@ function revisa(){
           });
     }
     // para obtener el valor del Tipo de Edad
-    let texto_edad = document.getElementById('f_tipoedad')
-    texto_edad = texto_edad.options[texto_edad.selectedIndex].text;
+    let texto_edad = document.getElementById('f_tipoedad').value;
 
-    if(texto_edad == "Años"){
+    if(texto_edad == "1"){
       if(e_input.value < 18){
-        let apoda_input = document.getElementById('apoderado_datos').value;
-        let aponu_input = document.getElementById('apoderado_num').value;
+        let apoda_input = document.getElementById('apoderado_datos');
+        let aponu_input = document.getElementById('apoderado_num');
 
-        if(apoda_input.length == 0 || aponu_input.length == 0){
+        if(apoda_input == null || aponu_input == null){
           return Swal.fire({
             icon: 'warning',
             title: 'Mensaje de Advertencia',
@@ -106,14 +105,14 @@ function revisa(){
           });
         }
       }
-      // AGREGAR VARIABLE AL "AGREGAR APODERADO PARA EL >= 18 XDDDD TYPU PUTO"
+      // AGREGAR VARIABLE AL "AGREGAR APODERADO PARA EL >= 18 XDDDD TYPU"
       
       
     }
 
-    if(texto_edad == "Meses"){
-      let apoda_input = document.getElementById('apoderado_datos').value;
-      let aponu_input = document.getElementById('apoderado_num').value;
+    if(texto_edad == "2"){
+      let apoda_input = document.getElementById('apoderado_datos');
+      let aponu_input = document.getElementById('apoderado_num');
       if(e_input.value > 12){
         return Swal.fire({
           icon: 'warning',
@@ -122,7 +121,7 @@ function revisa(){
           heightAuto: false
         });
       }
-      if(apoda_input.length == 0 || aponu_input.length == 0){
+      if(apoda_input == null || aponu_input == null){
           return Swal.fire({
             icon: 'warning',
             title: 'Mensaje de Advertencia',
@@ -132,9 +131,9 @@ function revisa(){
         }
     }
 
-    if(texto_edad == "Dias"){
-      let apoda_input = document.getElementById('apoderado_datos').value;
-      let aponu_input = document.getElementById('apoderado_num').value;
+    if(texto_edad == "3"){
+      let apoda_input = document.getElementById('apoderado_datos');
+      let aponu_input = document.getElementById('apoderado_num');
       if(e_input.value > 31){
         return Swal.fire({
           icon: 'warning',
@@ -143,7 +142,7 @@ function revisa(){
           heightAuto: false
         });
       }
-      if(apoda_input.length == 0 || aponu_input.length == 0){
+      if(apoda_input == null || aponu_input == null){
           return Swal.fire({
             icon: 'warning',
             title: 'Mensaje de Advertencia',
