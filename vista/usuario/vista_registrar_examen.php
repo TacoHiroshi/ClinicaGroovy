@@ -42,7 +42,7 @@
                                 <button type="button" class="btn btn-danger  btn-lg mt-1">Vel. de Sedimentacion</button>
                                 <button type="button" class="btn btn-danger  btn-lg mt-1">Hematocrito</button>
                                 <button type="button" class="btn btn-danger  btn-lg mt-1">Recuento de Plaquetas</button>
-                                <button type="button" class="btn btn-danger  btn-lg mt-1">Hemograma Completo</button>
+                                <button type="button" class="btn btn-danger  btn-lg mt-1" onclick="cargar_contenido('contenido_principal','../vista/examenes/ex_hemograma_completo.php')">Hemograma Completo</button>
                                 <button type="button" class="btn btn-danger  btn-lg mt-1">Hemoglobina</button>
                                 <button type="button" class="btn btn-danger  btn-lg mt-1">Grupo Sanguineo y Rh</button>
                                 <button type="button" class="btn btn-danger  btn-lg mt-1">Celulad LE</button>
