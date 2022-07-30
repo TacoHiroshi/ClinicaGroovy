@@ -103,7 +103,7 @@
                   <div class="col-lg-2 col-md-2 col-sm-2">
                     <div class="form-group">
                       <label>Apoderado</label>
-                      <div><button id="agregar-apo" class="btn btn-primary"><i class="fa fa-plus-circle mr-1"></i>Asignar apoderado</button></div>
+                      <div><button id="agregar-apo" class="btn btn-primary" onclick="cargar_apoderado();"><i class="fa fa-plus-circle mr-1"></i>Asignar apoderado</button></div>
                     </div>
                   </div>
                 </div>
@@ -176,6 +176,9 @@
                   <div class="col-md-6 col-sm-3">
                     <button id="liveAlertBtn" type="submit" class="btn btn-primary text-white text-bold" onclick="revisa()">Continuar <i class="fas fa-arrow-right"></i></button>
                   </div>
+                  <div class="col-md-6 col-sm-3">
+                    <button id="liveAlertBtn" type="submit" class="btn btn-primary text-white text-bold" onclick="almacena_paciente()">Guardar <i class="fas fa-save"></i></button>
+                  </div>
                 </div>
               </div>
             </div>
@@ -225,88 +228,11 @@
   if (this.value.length > 2) 
      this.value = this.value.slice(0,2); 
   })
-</script>
 
-<script>
-  let texto_edad = document.getElementById('f_tipoedad');
-  let texto_edad_inpu = texto_edad.options[texto_edad.selectedIndex].text;
-
-  if(texto_edad_inpu === "Meses"){
-    alert("gaaaaaaaaaaaaaaaaaaaaaa meses")
-  }
-
-  $("#paciente_edad").change(function(){
-    var paciente_edad = $("#paciente_edad").val();
-    if(paciente_edad < 18 || texto_edad_inpu == "Meses" || texto_edad_inpu == "Dias"){
-      var show = $("#menor_e");
-      show.addClass(" show");
-    }
-    if(paciente_edad >= 18){
-      var show = $("#menor_e");
-      show.removeClass(" show");
+  $('#paciente_edad, #f_tipoedad').change(function(){
+    if(revisa_edad()){
+      cargar_apoderado();
     }
   })
-</script>
-
-<script type="text/javascript">
-  $(function() {
-    var i = 0;
-    $('#agregar-apo').click(function (e) {
-      e.preventDefault();
-        i++;
-
-      if(i<=1){
-        $('.row-parents').append(
-        '<div class="row" id="row-parents-label'+i+'">'
-          +'<div class="col-lg-2 col-md-3 col-sm-4">'
-            +'<b>Datos del Apoderado:</b>'
-          +'</div>'
-        +'</div>'
-        // formulario
-        +'<div class="form-row" id="row-parents'+i+'">'
-          +'<div class="col-lg-4 col-md-4 col-sm-4">'
-            +'<div id="apoderado" class="form-group">'
-              +'<label for="exampleInputFile">Apellido y Nombres del Apoderado: </label>'
-              +'<div class="input-group mb-3">'
-                +'<input type="text" class="form-control" id="apoderado_datos" onkeypress="return soloLetras(event)" onpaste="return false">'
-              +'</div>'
-            +'</div>'
-          +'</div>'
-
-          +'<div class="col-lg-2 col-md-2 col-sm-2">'
-            +'<div id="apoderado" class="form-group">'
-              +'<label for="exampleInputFile">DNI del Apoderado: </label>'
-              +'<div class="input-group mb-3">'
-                +'<input type="number" class="form-control" id="apoderado_num" maxlength="8" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">'
-              +'</div>'
-            +'</div>'
-          +'</div>'
-          // boton para borrar
-          +'<div class="col-lg-2 col-md-3 col-sm-4">'
-            +'<div class="form-group">'
-              +'<label>Borrar</label>'
-              +'<div id="apoderado" class="form-group">'
-                +'<button id="'+i+'" class="btn borrar-apo btn-danger"><i class="fa fa-minus-circle"></i></button>'
-              +'</div>'
-            +'</div>'
-          +'</div>'
-
-        +'</div>'
-
-        );
-      }else{ return;}
-      
-
-      $(document).on('click','.borrar-apo', function(e){
-        e.preventDefault();
-
-        let id = $(this).attr("id");
-        $('#row-parents'+id+'').remove();
-        $('#row-parents-label'+id+'').remove();
-        i=0;
-      });
-
-    });
-});
 
 </script>

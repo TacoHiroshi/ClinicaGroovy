@@ -12,6 +12,69 @@ const   dni_input = document.getElementById('paciente_dni'),
         // de_input = document.getElementById('f_departamento'),
         // pr_input = document.getElementById('f_provincia'),
         // di_input = document.getElementById('f_distrito');
+function revisa_edad(){
+  let tipo_edad = document.getElementById('f_tipoedad').value;
+  var numero_edad = $("#paciente_edad").val();
+  if(tipo_edad == "2" || tipo_edad == "3"){
+    return 1;
+  }
+  if(numero_edad.length!= 0 && numero_edad < 18 && tipo_edad == "1"){
+    return 1;
+  }
+  return 0;
+}
+
+function cargar_apoderado(){
+  agrega_apoderado();
+  $('#agregar-apo').prop("disabled", true);
+}
+function nocargar_apoderado(){
+  
+  if(!revisa_edad()){
+    $('#row-parents-label').remove();
+    $('#row-parents').remove();
+    $('#agregar-apo').prop("disabled", false);  
+  }
+}
+function agrega_apoderado(){
+  $('.row-parents').append(
+    '<div class="row" id="row-parents-label">'
+      +'<div class="col-lg-2 col-md-3 col-sm-4">'
+        +'<b>Datos del Apoderado:</b>'
+      +'</div>'
+    +'</div>'
+    // formulario
+    +'<div class="form-row" id="row-parents">'
+      +'<div class="col-lg-4 col-md-4 col-sm-4">'
+        +'<div id="apoderado" class="form-group">'
+          +'<label for="exampleInputFile">Apellido y Nombres del Apoderado: </label>'
+          +'<div class="input-group mb-3">'
+            +'<input type="text" class="form-control" id="apoderado_datos" onkeypress="return soloLetras(event)" onpaste="return false">'
+          +'</div>'
+        +'</div>'
+      +'</div>'
+
+      +'<div class="col-lg-2 col-md-2 col-sm-2">'
+        +'<div id="apoderado" class="form-group">'
+          +'<label for="exampleInputFile">DNI del Apoderado: </label>'
+          +'<div class="input-group mb-3">'
+            +'<input type="number" class="form-control" id="apoderado_num" maxlength="8" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">'
+          +'</div>'
+        +'</div>'
+      +'</div>'
+      // boton para borrar
+      +'<div class="col-lg-2 col-md-3 col-sm-4">'
+        +'<div class="form-group">'
+          +'<label>Borrar</label>'
+          +'<div id="apoderado" class="form-group">'
+            +'<button id="borrar-apo" class="btn btn-danger" onclick="nocargar_apoderado();"><i class="fa fa-minus-circle"></i></button>'
+          +'</div>'
+        +'</div>'
+      +'</div>'
+    +'</div>'
+
+    );
+};
 function c_datos(){
     
 dni_input.value = localStorage.dni;
@@ -96,7 +159,7 @@ function revisa(){
         let apoda_input = document.getElementById('apoderado_datos');
         let aponu_input = document.getElementById('apoderado_num');
 
-        if(apoda_input == null || aponu_input == null){
+        if(apoda_input.value.length==0 || aponu_input.value.length==0){
           return Swal.fire({
             icon: 'warning',
             title: 'Mensaje de Advertencia',
@@ -121,7 +184,7 @@ function revisa(){
           heightAuto: false
         });
       }
-      if(apoda_input == null || aponu_input == null){
+      if(apoda_input.value.length==0 || aponu_input.value.length==0){
           return Swal.fire({
             icon: 'warning',
             title: 'Mensaje de Advertencia',
@@ -142,7 +205,7 @@ function revisa(){
           heightAuto: false
         });
       }
-      if(apoda_input == null || aponu_input == null){
+      if(apoda_input.value.length==0 || aponu_input.value.length==0){
           return Swal.fire({
             icon: 'warning',
             title: 'Mensaje de Advertencia',
@@ -185,7 +248,7 @@ function revisa(){
             icon: "warning",
             title: "Mensaje de Advertencia",
             text: "Debe ingresar el correo o número del paciente",
-            heightAuto: false,
+            heightAuto: false
           });
         }
     }
@@ -225,7 +288,7 @@ function r_datos(){
     if(f_requierecontacto.checked){
         localStorage.chrequiere = f_requierecontacto.value;
     }else{
-        localStorage.chrequiere = "";
+        localStorage.chrequiere = "0";
     }
     $("#contenido_principal").load('usuario/vista_registrar_examen.php');
 
@@ -244,7 +307,7 @@ localStorage.setItem('edad', "");
 localStorage.setItem('tipodedad', "");
 localStorage.setItem('email', "");
 localStorage.setItem('celular', "");
-localStorage.setItem('chrequiere', "");
+localStorage.setItem('chrequiere', "0");
 localStorage.setItem('ubigeo', "");
 $( "#f_requierecontacto" ).prop( "checked", false );
 $("#f_numero").attr("disabled", "disabled");
@@ -271,4 +334,20 @@ $("#tipo_edad").val("1").trigger("change");
 // di_input.value = "";
 
 
+}
+
+function almacena_paciente(){
+  alert(
+    localStorage.nombre+
+    localStorage.apepaterno+
+    localStorage.apematerno+
+    localStorage.dni+
+    localStorage.edad+
+    localStorage.sexo+
+    localStorage.chrequiere+
+    localStorage.ubigeo+
+    localStorage.tipodedad+
+    localStorage.email+
+    localStorage.celular
+  );
 }

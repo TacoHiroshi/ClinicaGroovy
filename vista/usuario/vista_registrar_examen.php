@@ -16,9 +16,8 @@
     </div><!-- /.container-fluid -->
 </div>
     <!-- /.content-header -->
-
-    <!-- Main content -->
-<div class="content">
+   <!-- Main content -->
+   <div class="content" id="contenedor_botones">
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-11 mx-auto">
@@ -38,15 +37,17 @@
                     <div class="card-body" style="display: block;">
                             <div class="row ">
                             <div class="col-md-9 mx-auto text-center">
-                                <button type="button" class="btn btn-danger  btn-lg mt-1">Constantes Corpusculares</button>
-                                <button type="button" class="btn btn-danger  btn-lg mt-1">Vel. de Sedimentacion</button>
-                                <button type="button" class="btn btn-danger  btn-lg mt-1">Hematocrito</button>
-                                <button type="button" class="btn btn-danger  btn-lg mt-1">Recuento de Plaquetas</button>
-                                <button type="button" class="btn btn-danger  btn-lg mt-1" onclick="cargar_contenido('contenido_principal','../vista/examenes/ex_hemograma_completo.php')">Hemograma Completo</button>
-                                <button type="button" class="btn btn-danger  btn-lg mt-1">Hemoglobina</button>
-                                <button type="button" class="btn btn-danger  btn-lg mt-1">Grupo Sanguineo y Rh</button>
-                                <button type="button" class="btn btn-danger  btn-lg mt-1">Celulad LE</button>
-                                <button type="button" class="btn btn-danger  btn-lg mt-1">Test de Coombs</button>
+                               
+                                <button type="button" class="btn btn-danger  btn-lg mt-1" id="1">Velocidad de Sedimentación</button>
+                                <button type="button" class="btn btn-danger  btn-lg mt-1" id="2">Hematocrito/Hemoglobina</button>
+                                <button type="button" class="btn btn-danger  btn-lg mt-1" id="3">Recuento de Plaquetas</button>
+                                <button type="button" class="btn btn-danger  btn-lg mt-1" id="4">Hemograma Completo</button>
+                                <button type="button" class="btn btn-danger  btn-lg mt-1" id="5">Grupo Sanguíneo y Rh</button>
+                                <button type="button" class="btn btn-danger  btn-lg mt-1" id="6">T.Coagulación y T.Sangría</button>
+                                <button type="button" class="btn btn-danger  btn-lg mt-1" id="7">Tiempos de Protrombina</button>
+                                <button type="button" class="btn btn-danger  btn-lg mt-1" id="8">Tiempo parcial de Tromboplastina</button>
+                                <button type="button" class="btn btn-danger  btn-lg mt-1" id="9">Fibrinogeno</button>
+                                <button type="button" class="btn btn-danger  btn-lg mt-1" id="10">Trombina</button>
                             </div>
                         <!-- /.row -->
                         </div>
@@ -72,7 +73,7 @@
                     <div class="card-body" style="display: block;">
                             <div class="row ">
                             <div class="col-md-9 mx-auto text-center">
-                                <button type="button" class="btn btn-success  btn-lg mt-1">BK</button>
+                                <button type="button" class="btn btn-success  btn-lg mt-1" onclick="cargar_contenido('contenido_principal','../vista/examenes/ex_microbiologia.php')">BK</button>
                                 <button type="button" class="btn btn-success  btn-lg mt-1">Reaccion Inflamatoria</button>
                                 <button type="button" class="btn btn-success  btn-lg mt-1">Parasitologico Seriado</button>
                                 <button type="button" class="btn btn-success  btn-lg mt-1">Cultivos</button>
@@ -102,15 +103,13 @@
                     <div class="card-body" style="display: block;">
                             <div class="row ">
                             <div class="col-md-9 mx-auto text-center">
-                                <button type="button" class="btn btn-orange  btn-lg mt-1">Reaccion de Widal</button>
-                                <button type="button" class="btn btn-orange  btn-lg mt-1">ASO - Antiestreptolisina</button>
-                                <button type="button" class="btn btn-orange  btn-lg mt-1">Proteina C. Reactiva</button>
-                                <button type="button" class="btn btn-orange  btn-lg mt-1">Factor Reumatoideo</button>
-                                <button type="button" class="btn btn-orange  btn-lg mt-1">RPR</button>
-                                <button type="button" class="btn btn-orange  btn-lg mt-1">HIV 1-2</button>
-                                <button type="button" class="btn btn-orange  btn-lg mt-1">Hormona T3</button>
-                                <button type="button" class="btn btn-orange  btn-lg mt-1">Hormona T4</button>
-                                <button type="button" class="btn btn-orange  btn-lg mt-1">Hormona TSH</button>
+                                <button type="button" class="btn btn-orange  btn-lg mt-1" onclick="cargar_contenido('contenido_principal','../vista/examenes/ex_reaccion_widal.php')">Reaccion de Widal</button>           
+                                <button type="button" class="btn btn-orange  btn-lg mt-1" onclick="cargar_contenido('contenido_principal','../vista/examenes/ex_rpr.php')">RPR</button>
+                                <button type="button" class="btn btn-orange  btn-lg mt-1" onclick="cargar_contenido('contenido_principal','../vista/examenes/ex_vih.php')">HIV</button>
+                                <button type="button" class="btn btn-orange  btn-lg mt-1" onclick="cargar_contenido('contenido_principal','../vista/examenes/ex_hepatitisB.php')">Hepatitis B</button>
+                                <button type="button" class="btn btn-orange  btn-lg mt-1" onclick="cargar_contenido('contenido_principal','../vista/examenes/ex_hcg_cuantitativo.php')">HCG Cuantitativo </button>
+                                <button type="button" class="btn btn-orange  btn-lg mt-1" onclick="cargar_contenido('contenido_principal','../vista/examenes/ex_hcg_cualitativo.php')">HCG Cualitativa</button>
+                                <button type="button" class="btn btn-orange  btn-lg mt-1" onclick="cargar_contenido('contenido_principal','../vista/examenes/ex_hormonas.php')">Hormonas</button>
                             </div>
                         <!-- /.row -->
                         </div>
@@ -137,7 +136,7 @@
                     <div class="card-body" style="display: block;">
                             <div class="row ">
                             <div class="col-md-9 mx-auto text-center">
-                                <button type="button" class="btn btn-saphire  btn-lg mt-1">CA - 125</button>
+                                <button type="button" class="btn btn-saphire  btn-lg mt-1" onclick="cargar_contenido('contenido_principal','../vista/examenes/ex_per_oncologico.php')">CA - 125</button>
                                 <button type="button" class="btn btn-saphire  btn-lg mt-1">CA 15 - 3</button>
                                 <button type="button" class="btn btn-saphire  btn-lg mt-1">CA 19 - 9</button>
                                 <button type="button" class="btn btn-saphire  btn-lg mt-1">CEA</button>
@@ -154,3 +153,12 @@
     <!-- /.content -->
 </div>
   <!-- /.content-wrapper -->
+  <script>
+$(function() {
+ $('.content').on('click', 'button', function(event) {
+    let id = this.id;
+    localStorage.setItem('examen_id', id);
+    cargar_contenido('contenido_principal','../vista/usuario/vista_registra_campos.php');
+  });
+});
+</script>

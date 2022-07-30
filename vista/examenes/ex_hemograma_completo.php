@@ -231,7 +231,7 @@
                     </div>
                 </div>
                 
-                <div class="row">
+                <div class="row no-print">
                   <div class="col-md-6 col-sm-3">
                     <button type="button" class="btn btn-danger" id="cancelar" onclick="c_cancelar()">Cancelar</button>
                   </div>
