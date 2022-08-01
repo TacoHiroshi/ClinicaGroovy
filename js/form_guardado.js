@@ -25,8 +25,10 @@ function revisa_edad(){
 }
 
 function cargar_apoderado(){
-  agrega_apoderado();
-  $('#agregar-apo').prop("disabled", true);
+  if($('.row-parents').children().length == 0) {
+    agrega_apoderado();
+    $('#agregar-apo').prop("disabled", true);
+  }
 }
 function nocargar_apoderado(){
   
@@ -169,8 +171,7 @@ function revisa(){
         }
       }
       // AGREGAR VARIABLE AL "AGREGAR APODERADO PARA EL >= 18 XDDDD TYPU"
-      
-      
+
     }
 
     if(texto_edad == "2"){
@@ -290,6 +291,16 @@ function r_datos(){
     }else{
         localStorage.chrequiere = "0";
     }
+
+    if($('.row-parents').children().length != 0){
+      localStorage.setItem('requiere_apoderado', 1);
+      localStorage.setItem('nombre_apoderado', document.getElementById('apoderado_datos').value);
+      localStorage.setItem('dni_apoderado', document.getElementById('apoderado_num').value);
+    }
+    else{
+      localStorage.setItem('requiere_apoderado', 0);
+    }
+    
     $("#contenido_principal").load('usuario/vista_registrar_examen.php');
 
     // desplegable
@@ -327,8 +338,8 @@ te_input.value = "";
 em_input.value = "";
 c_input.value = "";
 rellenar_ubigeo("210101");
-
-$("#tipo_edad").val("1").trigger("change");
+$("#f_tipoedad").val("1").trigger("change");
+nocargar_apoderado();
 // de_input.value = "";
 // pr_input.value = "";
 // di_input.value = "";

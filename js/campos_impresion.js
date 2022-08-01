@@ -24,7 +24,14 @@ function rellenar_datos_pdf(){
     $("#re_dni").text(localStorage.dni);
     $("#re_fecha").text(day+"/"+month+"/"+fullYear);
     $("#re_hora").text(hours+":"+minutes+":"+seconds);
-    $("#re_edad").text(localStorage.edad);
+    var tipo_edad_letras = "Años";
+    if(localStorage.tipoedad = "2"){
+        var tipo_edad_letras = "Meses";
+    }
+    if(localStorage.tipoedad = "3"){
+        var tipo_edad_letras = "Dias";
+    }
+    $("#re_edad").text("HOLA");
 
 
     let id_examen = '0';

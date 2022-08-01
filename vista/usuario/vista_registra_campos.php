@@ -1,5 +1,5 @@
 <!-- Content Header (Page header) -->
-<div class="content-header"onload="buscar_campos(localStorage.examen_id);">
+<div class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
@@ -58,6 +58,6 @@
   </script>
       <script>
         $(document).ready(function() {
-          buscar_campos();
+          buscar_campos(localStorage.examen_id);
         });
     </script>

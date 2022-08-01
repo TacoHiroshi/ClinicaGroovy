@@ -4,7 +4,7 @@
     <div class="row mb-2">
         
         <div class="col-sm-6">
-            <button type="button" class="btn btn-danger mt-1" onclick="cargar_contenido('contenido_principal','usuario/vista_usuario_listar.php')">Volver</button>
+            <button type="button" class="btn btn-danger mt-1">Volver</button>
         </div><!-- /.col -->
         <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
@@ -73,7 +73,7 @@
                     <div class="card-body" style="display: block;">
                             <div class="row ">
                             <div class="col-md-9 mx-auto text-center">
-                                <button type="button" class="btn btn-success  btn-lg mt-1" onclick="cargar_contenido('contenido_principal','../vista/examenes/ex_microbiologia.php')">BK</button>
+                                <button type="button" class="btn btn-success  btn-lg mt-1">BK</button>
                                 <button type="button" class="btn btn-success  btn-lg mt-1">Reaccion Inflamatoria</button>
                                 <button type="button" class="btn btn-success  btn-lg mt-1">Parasitologico Seriado</button>
                                 <button type="button" class="btn btn-success  btn-lg mt-1">Cultivos</button>
@@ -103,13 +103,13 @@
                     <div class="card-body" style="display: block;">
                             <div class="row ">
                             <div class="col-md-9 mx-auto text-center">
-                                <button type="button" class="btn btn-orange  btn-lg mt-1" onclick="cargar_contenido('contenido_principal','../vista/examenes/ex_reaccion_widal.php')">Reaccion de Widal</button>           
-                                <button type="button" class="btn btn-orange  btn-lg mt-1" onclick="cargar_contenido('contenido_principal','../vista/examenes/ex_rpr.php')">RPR</button>
-                                <button type="button" class="btn btn-orange  btn-lg mt-1" onclick="cargar_contenido('contenido_principal','../vista/examenes/ex_vih.php')">HIV</button>
-                                <button type="button" class="btn btn-orange  btn-lg mt-1" onclick="cargar_contenido('contenido_principal','../vista/examenes/ex_hepatitisB.php')">Hepatitis B</button>
-                                <button type="button" class="btn btn-orange  btn-lg mt-1" onclick="cargar_contenido('contenido_principal','../vista/examenes/ex_hcg_cuantitativo.php')">HCG Cuantitativo </button>
-                                <button type="button" class="btn btn-orange  btn-lg mt-1" onclick="cargar_contenido('contenido_principal','../vista/examenes/ex_hcg_cualitativo.php')">HCG Cualitativa</button>
-                                <button type="button" class="btn btn-orange  btn-lg mt-1" onclick="cargar_contenido('contenido_principal','../vista/examenes/ex_hormonas.php')">Hormonas</button>
+                                <button type="button" class="btn btn-orange  btn-lg mt-1" id="11">Reaccion de Widal</button>           
+                                <button type="button" class="btn btn-orange  btn-lg mt-1" >RPR</button>
+                                <button type="button" class="btn btn-orange  btn-lg mt-1" >HIV</button>
+                                <button type="button" class="btn btn-orange  btn-lg mt-1" >Hepatitis B</button>
+                                <button type="button" class="btn btn-orange  btn-lg mt-1" >HCG Cuantitativo </button>
+                                <button type="button" class="btn btn-orange  btn-lg mt-1" >HCG Cualitativa</button>
+                                <button type="button" class="btn btn-orange  btn-lg mt-1" >Hormonas</button>
                             </div>
                         <!-- /.row -->
                         </div>
@@ -136,7 +136,7 @@
                     <div class="card-body" style="display: block;">
                             <div class="row ">
                             <div class="col-md-9 mx-auto text-center">
-                                <button type="button" class="btn btn-saphire  btn-lg mt-1" onclick="cargar_contenido('contenido_principal','../vista/examenes/ex_per_oncologico.php')">CA - 125</button>
+                                <button type="button" class="btn btn-saphire  btn-lg mt-1" >CA - 125</button>
                                 <button type="button" class="btn btn-saphire  btn-lg mt-1">CA 15 - 3</button>
                                 <button type="button" class="btn btn-saphire  btn-lg mt-1">CA 19 - 9</button>
                                 <button type="button" class="btn btn-saphire  btn-lg mt-1">CEA</button>

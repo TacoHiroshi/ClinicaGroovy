@@ -156,10 +156,15 @@ function buscar_paciente(){
     })
 }
 function rellenar_ubigeo(cod_ubigeo){
+    rellenar_ubigeo_separados(cod_ubigeo);
+    rellenar_ubigeo_por_busqueda(cod_ubigeo);
+}
+function rellenar_ubigeo_separados(cod_ubigeo){
     dd= cod_ubigeo.slice(0,2);
     dp= cod_ubigeo.slice(0,4);
     $("#f_departamento").val(dd).trigger("change");
-    $("#f_ubigeo").val(cod_ubigeo).trigger("change");
     listar_provincia(dd,dp,cod_ubigeo);
-
+}
+function rellenar_ubigeo_por_busqueda(cod_ubigeo){
+    $("#f_ubigeo").val(cod_ubigeo).trigger("change");
 }

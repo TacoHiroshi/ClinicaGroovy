@@ -91,7 +91,7 @@
         <!-- /.row -->
       </div><!-- /.container-fluid -->
     </div>
-    <script src="../js/campos_examen.js"></script>
+    <script src="../js/campos_examen.js?rev=<?php echo time(); ?>"></script>
     <script>
         $(document).ready(function() {
             rellenar_datos_pdf();

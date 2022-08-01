@@ -207,12 +207,36 @@
   });
   $("#f_departamento").change(function(){
     var id_departamento = $("#f_departamento").val();
+    var id_ubigeo = $("#f_ubigeo").val();
     listar_provincia(id_departamento,"vacio");
+    if(id_departamento!=id_ubigeo.slice(0,2)){
+      rellenar_ubigeo_por_busqueda(id_departamento+'0101');
+    }
   })
   $("#f_provincia").change(function(){
     var id_provincia = $("#f_provincia").val();
+    var id_ubigeo = $("#f_ubigeo").val();
     listar_distrito(id_provincia,"vacio");
+    if(id_provincia!=id_ubigeo.slice(0,4)){
+    rellenar_ubigeo_por_busqueda(id_provincia+'01');
+    }
   })
+  $("#f_distrito").change(function(){
+    var id_distrito = $("#f_distrito").val();
+    var id_ubigeo = $("#f_ubigeo").val();
+    if(id_distrito!=id_ubigeo){
+    rellenar_ubigeo_por_busqueda(id_distrito);
+    }
+  })
+  
+  $("#f_ubigeo").change(function(){
+    var id_distrito = $("#f_distrito").val();
+    var id_ubigeo = $("#f_ubigeo").val();
+    if(id_distrito!=id_ubigeo){
+    rellenar_ubigeo_separados(id_ubigeo);
+    }
+  })
+
   $(function(){
       var menues = $(".nav-link");
       menues.click(function(){
