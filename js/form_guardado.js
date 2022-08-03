@@ -302,7 +302,7 @@ function r_datos(){
     else{
       localStorage.setItem('requiere_apoderado', 0);
     }
-    
+    mandarDatos();
     $("#contenido_principal").load('usuario/vista_registrar_examen.php');
 
     // desplegable

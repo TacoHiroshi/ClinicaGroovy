@@ -144,7 +144,7 @@ function buscar_paciente(){
             document.getElementById("f_correo").value = data[0][9];
             document.getElementById("f_numero").value = data[0][10];
             rellenar_ubigeo(ubigeo);
-            localStorage.setItem('paciente_existe',data[0][0]);
+            localStorage.setItem("usuario_existe", data[0][0]);
 
         }else{
             Swal.fire({
@@ -153,7 +153,7 @@ function buscar_paciente(){
                 text: 'Paciente no Encontrado',
                 heightAuto: false
               });
-              localStorage.setItem('paciente_existe',"No");
+            localStorage.setItem("usuario_existe", "no");
         }
     })
 }

@@ -32,6 +32,20 @@ function listar_paciente_serverside(){
             cell.innerHTML = i + 1 + PageInfo.start;
         });
     });
-
-
 }
+
+$('#tabla_usuario').on('click','.descargar',function(){
+    var data = tbl_listar_paciente.row($(this).parents('tr')).data();
+
+    if(tbl_listar_paciente.row(this).child.isShown()){
+        var data = tbl_listar_paciente.row(this).data();
+    }
+    $('.form-control').removeClass("is-invalid").removeClass("is-valid");
+    $("#modal_editar_usuario").modal('show');
+    document.getElementById('txt_usuario_edit').value=data[1];
+    document.getElementById('txt_email_edit').value=data[6];
+    
+    document.getElementById('txt_idusuario_edit').value=data[0];
+
+    $("#select_rol_edit").val(data[3]).trigger("change"); 
+})
