@@ -56,17 +56,33 @@
       </div>
       <div class="modal-body">
         <div class="row">
-            <div class="col-12">
-                <label for="">Usuario</label>
-                <input type="text" id="txt_usuario" class="form-control">   
+            <div class="col-6">
+                <label for="">Apellido Paterno</label>
+                <input type="text" id="txt_appaterno" class="form-control">   
+            </div>
+            <div class="col-6">
+                <label for="">Apellido Materno</label>
+                <input type="text" id="txt_apmaterno" class="form-control">   
             </div>
             <div class="col-12">
-                <label for="">Contraseña</label>
-                <input type="password" id="txt_contra" class="form-control">
+                <label for="">Nombre Completo</label>
+                <input type="text" id="txt_usuario" class="form-control">   
+            </div>
+            <div class="col-6">
+                <label for="">DNI</label>
+                <input type="text" id="txt_dni" class="form-control">   
+            </div>
+            <div class="col-6">
+                <label for="">Num. de Celular</label>
+                <input type="text" id="txt_celular" class="form-control">   
             </div>
             <div class="col-12">
                 <label for="">Email</label>
                 <input type="text" id="txt_email" class="form-control">
+            </div>
+            <div class="col-12">
+                <label for="">Contraseña</label>
+                <input type="password" id="txt_contra" class="form-control">
             </div>
             <div class="col-12">
                 <label for="">Rol</label>
@@ -161,5 +177,4 @@
 });
 listar_usuario_serverside();
 Cargar_rol();
-
 </script>

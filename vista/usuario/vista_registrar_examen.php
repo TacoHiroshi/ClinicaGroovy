@@ -104,12 +104,12 @@
                             <div class="row ">
                             <div class="col-md-9 mx-auto text-center">
                                 <button type="button" class="btn btn-orange  btn-lg mt-1" id="11">Reaccion de Widal</button>           
-                                <button type="button" class="btn btn-orange  btn-lg mt-1" >RPR</button>
-                                <button type="button" class="btn btn-orange  btn-lg mt-1" >HIV</button>
-                                <button type="button" class="btn btn-orange  btn-lg mt-1" >Hepatitis B</button>
-                                <button type="button" class="btn btn-orange  btn-lg mt-1" >HCG Cuantitativo </button>
-                                <button type="button" class="btn btn-orange  btn-lg mt-1" >HCG Cualitativa</button>
-                                <button type="button" class="btn btn-orange  btn-lg mt-1" >Hormonas</button>
+                                <button type="button" class="btn btn-orange  btn-lg mt-1" id="12">RPR</button>
+                                <button type="button" class="btn btn-orange  btn-lg mt-1" id="13">HIV</button>
+                                <button type="button" class="btn btn-orange  btn-lg mt-1" id="14">Hepatitis B</button>
+                                <button type="button" class="btn btn-orange  btn-lg mt-1" id="15">HCG Cuantitativo </button>
+                                <button type="button" class="btn btn-orange  btn-lg mt-1" id="16">HCG Cualitativa</button>
+                                <button type="button" class="btn btn-orange  btn-lg mt-1" id="17">Hormonas</button>
                             </div>
                         <!-- /.row -->
                         </div>
@@ -136,12 +136,12 @@
                     <div class="card-body" style="display: block;">
                             <div class="row ">
                             <div class="col-md-9 mx-auto text-center">
-                                <button type="button" class="btn btn-saphire  btn-lg mt-1" >CA - 125</button>
-                                <button type="button" class="btn btn-saphire  btn-lg mt-1">CA 15 - 3</button>
-                                <button type="button" class="btn btn-saphire  btn-lg mt-1">CA 19 - 9</button>
-                                <button type="button" class="btn btn-saphire  btn-lg mt-1">CEA</button>
-                                <button type="button" class="btn btn-saphire  btn-lg mt-1">PSA Total</button>
-                                <button type="button" class="btn btn-saphire  btn-lg mt-1">PSA Libre</button>
+                                <button type="button" class="btn btn-saphire  btn-lg mt-1" id="18">CA - 125</button>
+                                <button type="button" class="btn btn-saphire  btn-lg mt-1" id="19">CA 15 - 3</button>
+                                <button type="button" class="btn btn-saphire  btn-lg mt-1" id="20">CA 19 - 9</button>
+                                <button type="button" class="btn btn-saphire  btn-lg mt-1" id="21">CEA</button>
+                                <button type="button" class="btn btn-saphire  btn-lg mt-1" id="22">PSA Total</button>
+                                <button type="button" class="btn btn-saphire  btn-lg mt-1" id="23">PSA Libre</button>
                             </div>
                         <!-- /.row -->
                         </div>

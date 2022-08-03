@@ -273,7 +273,7 @@ function soloLetras(e) {
     if (letras.indexOf(tecla) == -1 && !tecla_especial) {
       return false;
     }
-  }
+}
 
 function r_datos(){ 
     localStorage.setItem('dni', dni_input.value);
@@ -286,6 +286,8 @@ function r_datos(){
     localStorage.setItem('email', em_input.value);
     localStorage.setItem('celular', c_input.value);
     localStorage.setItem('ubigeo', ubigeo_input.value);
+    var arr = new Array(0);
+    localStorage.setItem('examenes_agregados', JSON.stringify(arr));
     if(f_requierecontacto.checked){
         localStorage.chrequiere = f_requierecontacto.value;
     }else{

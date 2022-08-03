@@ -107,7 +107,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                with font-awesome or any other icon font library -->
           <li class="nav-header">Registros</li>
           <li class="nav-item">
-            <a href="index.php" class="nav-link active">
+            <a href="#" class="nav-link" onclick="cargar_contenido('contenido_principal','usuario/listar_resultados.php')">
               <i class="nav-icon fas fa-plus-circle"></i>
               <p>
                 Registrar Analisis

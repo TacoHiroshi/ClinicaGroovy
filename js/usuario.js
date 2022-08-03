@@ -253,8 +253,13 @@ function registrarusuario(){
     let contra  = document.getElementById('txt_contra').value;
     let email   = document.getElementById('txt_email').value;
     let rol     = document.getElementById('select_rol').value;
-    if(usuario.length==0 || contra.length==0 || email.length==0 || rol.length==0){
-        validar_registro("txt_usuario", "txt_contra", "txt_email");
+    let ap_paterno     = document.getElementById('txt_appaterno').value;
+    let ap_materno   = document.getElementById('txt_apmaterno').value;
+    let dni     = document.getElementById('txt_dni').value;
+    let celular     = document.getElementById('txt_celular').value;
+
+    if(usuario.length==0 || contra.length==0 || email.length==0 || rol.length==0 || ap_paterno.length==0 || ap_materno.length==0 || dni.length==0 || celular.length==0){
+        validar_registro("txt_usuario", "txt_contra", "txt_email", "txt_appaterno", "txt_apmaterno", "txt_dni", "txt_celular");
         return Swal.fire("Mensaje de Advertencia","Tiene algunos campos vacios","warning");
     }
     if(validar_emailR(email)){
@@ -268,6 +273,10 @@ function registrarusuario(){
     formData.append('c',contra);
     formData.append('e',email);
     formData.append('r',rol);
+    formData.append('p',ap_paterno);
+    formData.append('m',ap_materno);
+    formData.append('d',dni);
+    formData.append('l',celular);
 
     $.ajax({
         url:'../control/user/registrar_usuario.php',
@@ -278,7 +287,7 @@ function registrarusuario(){
         success: function(resp){
             if(resp>0){
                 if(resp==1){
-                    validar_registro("txt_usuario", "txt_contra", "txt_email");
+                    validar_registro("txt_usuario", "txt_contra", "txt_email", "txt_appaterno", "txt_apmaterno", "txt_dni", "txt_celular");
                     limpiarmodalusu();
                     Swal.fire("Mensaje de Confirmacion","Nuevo usuario registrado","success").
                     then((value)=>{
@@ -298,16 +307,27 @@ function registrarusuario(){
     return false;
 }
 
-function validar_registro(usuario, contra, email){
+function validar_registro(usuario, contra, email,txt_appaterno ,txt_apmaterno ,txt_dni ,txt_celular ){
     Boolean(document.getElementById(usuario).value.length>0) ? $("#"+usuario).removeClass("is-invalid").addClass
     ("is-valid") : $("#"+usuario).removeClass("is-valid").addClass("is-invalid");
     if(contra != ""){
         Boolean(document.getElementById(contra).value.length>0) ? $("#"+contra).removeClass("is-invalid").addClass
     ("is-valid") : $("#"+contra).removeClass("is-valid").addClass("is-invalid");
     }
-    
     Boolean(document.getElementById(email).value.length>0) ? $("#"+email).removeClass("is-invalid").addClass
     ("is-valid") : $("#"+email).removeClass("is-valid").addClass("is-invalid");
+    
+    Boolean(document.getElementById(txt_appaterno).value.length>0) ? $("#"+txt_appaterno).removeClass("is-invalid").addClass
+    ("is-valid") : $("#"+txt_appaterno).removeClass("is-valid").addClass("is-invalid");
+    
+    Boolean(document.getElementById(txt_apmaterno).value.length>0) ? $("#"+txt_apmaterno).removeClass("is-invalid").addClass
+    ("is-valid") : $("#"+txt_apmaterno).removeClass("is-valid").addClass("is-invalid");
+    
+    Boolean(document.getElementById(txt_dni).value.length>0) ? $("#"+txt_dni).removeClass("is-invalid").addClass
+    ("is-valid") : $("#"+txt_dni).removeClass("is-valid").addClass("is-invalid");
+    
+    Boolean(document.getElementById(txt_celular).value.length>0) ? $("#"+txt_celular).removeClass("is-invalid").addClass
+    ("is-valid") : $("#"+txt_celular).removeClass("is-valid").addClass("is-invalid");
 }
 
 function validar_emailR(email){

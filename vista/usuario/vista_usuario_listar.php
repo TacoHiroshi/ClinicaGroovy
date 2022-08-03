@@ -110,6 +110,16 @@
                 <!-- para agregar a los padres -->
                 <div class="row-parents"></div>
                 <!-- para agregar a los padres -->
+                
+                <div class="row">
+                  <div class="col-lg-6 col-md-3 col-sm-4">
+                    <div class="form-group">
+                      <label>Departamento/Provincia/Distrito: </label>
+                      <select class="js-example-basic-single" name="state" style="width: 100%;" id="f_ubigeo">
+                      </select>
+                    </div>
+                  </div>
+                </div>
                 <div class="row">
                   <div class="col-lg-2 col-md-3 col-sm-4">
                     <div class="form-group">
@@ -132,15 +142,6 @@
                   </div>
                 </div>
                 
-                <div class="row">
-                  <div class="col-lg-6 col-md-3 col-sm-4">
-                    <div class="form-group">
-                      <label>Departamento/Provincia/Distrito: </label>
-                      <select class="js-example-basic-single" name="state" style="width: 100%;" id="f_ubigeo">
-                      </select>
-                    </div>
-                  </div>
-                </div>
                 <div class="row">
                   <div class="col-auto my-1">
                     <div class="icheck-primary">

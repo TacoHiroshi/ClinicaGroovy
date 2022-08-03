@@ -56,16 +56,21 @@
             conexionBD::cerrar_conexion();
         }
 
-        public function registrarusuario($usuario,$contra,$email,$rol){
+        public function registrarusuario($usuario,$contra,$email,$rol,$ap_paterno,$ap_materno,$dni,$celular){
             $c = conexionBD::conexionPDO();
 
-            $sql ="CALL SP_REGISTRAR_USUARIO(?,?,?,?)";
+            $sql ="CALL SP_REGISTRAR_USUARIO(?,?,?,?,?,?,?,?)";
             $arreglo = array();
             $query = $c->prepare($sql);
             $query->bindParam(1,$usuario);
             $query->bindParam(2,$contra);
             $query->bindParam(3,$email);
             $query->bindParam(4,$rol);
+            $query->bindParam(5,$ap_paterno);
+            $query->bindParam(6,$ap_materno);
+            $query->bindParam(7,$dni);
+            $query->bindParam(8,$celular);
+            
             $resultado = $query->execute();
             if($row = $query->fetchColumn()){
                 return $row;
