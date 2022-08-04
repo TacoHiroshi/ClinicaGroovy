@@ -1,6 +1,7 @@
 function buscar_campos(){
     //let dni = document.getElementById('paciente_dni').value;
     let id_examen = localStorage.examen_id;
+    buscar_paciente();
     $.ajax({
         url:'../control/user/control_buscar_campos.php',
         type:'POST',
@@ -31,7 +32,28 @@ function buscar_campos(){
         }
     })
 }
+
+function buscar_paciente(){
+    let dni = localStorage.getItem('dni');
+    $.ajax({
+        url:'../control/user/buscar_paciente_dni.php',
+        type:'POST',
+        data:{
+            dni:dni
+        }
+    }).done(function(resp){
+        var data = JSON.parse(resp);
+        if(data.length > 0){
+            localStorage.setItem("usuario_existe", data[0][0]);
+
+        }else{
+            localStorage.setItem("usuario_existe", "no");
+        }
+    })
+}
 function agregar_campos(){
+    
+    
     let id_examen = document.getElementById('f_examen').value;
     var carga_localstorage = JSON.parse(localStorage.getItem('examenes_agregados'));
     $.ajax({
@@ -114,7 +136,7 @@ function rellenado(){
         resultadosjuntitos.push(inputs_examen[i].value);
      }
      localStorage.setItem('resultadosarray',JSON.stringify(resultadosjuntitos));
-
+    Registrar_Analisis();
     cargar_contenido('contenido_principal','../vista/examenes/ex_impresion.php');
 }
 function rellenar_datos_pdf(){

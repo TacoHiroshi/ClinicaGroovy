@@ -3,6 +3,7 @@ session_start();
 if(!isset($_SESSION['S_IDUSUARIO'])){
   header('Location: ../index.php');
 }
+echo '<script> sessionStorage.setItem("id_usuario", "' . $_SESSION['S_IDUSUARIO'] . '");</script>';
 ?>
 
 <!DOCTYPE html>
@@ -107,7 +108,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                with font-awesome or any other icon font library -->
           <li class="nav-header">Registros</li>
           <li class="nav-item">
-            <a href="#" class="nav-link" onclick="cargar_contenido('contenido_principal','usuario/listar_resultados.php')">
+            <a href="index.php" class="nav-link">
               <i class="nav-icon fas fa-plus-circle"></i>
               <p>
                 Registrar Analisis
@@ -115,8 +116,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </a>
           </li>
           <div class="dropdown-divider"></div>
-          <?php if($_SESSION['S_NROL']=="1"||$_SESSION['S_NROL']=="2"){?>
           <li class="nav-header">Consultas</li>
+          <?php if($_SESSION['S_NROL']=="1"||$_SESSION['S_NROL']=="2"){?>
+          
           <li class="nav-item">
             <a href="#" class="nav-link "onclick="cargar_contenido('contenido_principal','usuario/vista_registrar_examen.php')">
               <i class="nav-icon fas fa-search-plus"></i>
@@ -134,6 +136,26 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </p>
             </a>
           </li>
+          <?php if($_SESSION['S_NROL']=="1"||$_SESSION['S_NROL']=="2"){?>  
+          <li class="nav-item">
+            <a href="#" class="nav-link" onclick="cargar_contenido('contenido_principal','usuario/listar_resultadosJ.php')">
+              <i class="nav-icon fas fa-list-alt"></i>
+              <p>
+                Consultar Resultados
+              </p>
+            </a>
+          </li>
+          <?php }?>
+          <?php if($_SESSION['S_NROL']=="1"||$_SESSION['S_NROL']=="3"){?>
+          <li class="nav-item">
+            <a href="#" class="nav-link" onclick="cargar_contenido('contenido_principal','usuario/listar_resultados.php')">
+              <i class="nav-icon fas fa-list-alt"></i>
+              <p>
+                Consultar Resultados
+              </p>
+            </a>
+          </li>
+          <?php }?>
           <div class="dropdown-divider"></div>
           <?php if($_SESSION['S_NROL']=="1"){?>
             <li class="nav-header">Administración</li>
@@ -155,11 +177,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper" id="contenido_principal">
+    <div class="text-center">
+  <img src="../resources/labo-wall2.jpg" class="img-fluid" alt="...">
+    </div>
   </div>
   <!-- /.content-wrapper -->
 
   <!-- Main Footer -->
-  <footer class="main-footer no-print">
+  <footer class="main-footer no-print fixed-bottom">
     <!-- To the right -->
     <div class="float-right d-none d-sm-inline">
       2022

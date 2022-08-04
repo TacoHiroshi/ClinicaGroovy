@@ -143,7 +143,12 @@ function buscar_paciente(){
             $("#f_requierecontacto").prop("checked", data[0][7]);
             document.getElementById("f_correo").value = data[0][9];
             document.getElementById("f_numero").value = data[0][10];
+        if(data[0][14]!=null){
+            document.getElementById("apoderado_datos").value = data[0][12];
+            document.getElementById("apoderado_num").value = data[0][13];
+        }
             rellenar_ubigeo(ubigeo);
+
             localStorage.setItem("usuario_existe", data[0][0]);
 
         }else{

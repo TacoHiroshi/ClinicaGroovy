@@ -214,6 +214,10 @@ $('#tabla_usuario').on('click','.contra',function(){
     if(tbl_listar_usuario.row(this).child.isShown()){
         var data = tbl_listar_usuario.row(this).data();
     }
+    
+    for(var i = 0; i < data.length; i++){
+        console.log(data[i]);
+    }
     $("#modal_cambiar_contrasena").modal('show');
     
     document.getElementById('text_usuariocontra').value=data[1];

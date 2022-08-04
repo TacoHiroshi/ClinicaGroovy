@@ -9,4 +9,5 @@
     $_SESSION['S_USUARIO']=$usuario;
     $_SESSION['S_ROL']=$rol;
     $_SESSION['S_NROL']=$nrol;
+    
 ?>
